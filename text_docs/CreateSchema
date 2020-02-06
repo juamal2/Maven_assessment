@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `inventory`.`customers` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -37,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `inventory`.`items` (
   `value` DOUBLE NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -53,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `inventory`.`orders` (
     FOREIGN KEY (`customer_id`)
     REFERENCES `inventory`.`customers` (`id`))
 ENGINE = InnoDB
+
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -74,6 +77,7 @@ CREATE TABLE IF NOT EXISTS `inventory`.`order_line` (
     FOREIGN KEY (`order_id`)
     REFERENCES `inventory`.`orders` (`id`))
 ENGINE = InnoDB
+
 DEFAULT CHARACTER SET = utf8;
 
 
