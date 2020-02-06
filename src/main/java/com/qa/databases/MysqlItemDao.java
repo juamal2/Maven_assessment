@@ -41,12 +41,10 @@ public class MysqlItemDao implements Dao<Item> {
 			try {
 			Item item = new Item(t.getId());
 			String valueStr = database.selectQuery("SELECT value FROM items WHERE id = '" + t.getId() + "'");
-			valueStr = valueStr.replace("value = ", "");
+			valueStr = valueStr.replace("value = ", "").trim();
 			item.setValue(Double.parseDouble(valueStr));
 			String nameStr = database.selectQuery("SELECT name FROM items WHERE id = '" + t.getId() + "'");
-			nameStr = nameStr.replace("\n", "");
-			nameStr = nameStr.replace("name = ", "");
-			item.setName(nameStr);
+			item.setName(nameStr.replace("name = ", "").trim());
 			System.out.println("you selected: " + item.getName() + "cost: " + item.getValue() );
 			return item;
 			}

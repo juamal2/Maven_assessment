@@ -68,8 +68,10 @@ public class Jdbc {
 			try {
 				this.stmt = this.connection.createStatement();
 				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				String keys = resultSet_toString(stmt.getGeneratedKeys());
-				return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
+				if (null != stmt.getGeneratedKeys()) {
+					String keys = resultSet_toString(stmt.getGeneratedKeys());
+					return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
+				}
 			}catch (SQLException ex) {
 				System.out.println("thats why am i not seeing this aww shit ");
 			}finally {

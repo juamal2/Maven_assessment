@@ -1,6 +1,7 @@
-package Interact;
+package com.qa.Interact;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.qa.databases.*;
@@ -12,6 +13,7 @@ public class CreateQuery {
 	public Order CreateOrderItems(int customer_id, Jdbc database){
 		Scanner input = new Scanner(System.in);
 		ArrayList<Item> items = new ArrayList<Item>();
+		double totalCost = 0;
 		MysqlItemDao itemsql = new MysqlItemDao();
 		boolean appending = true;
 		System.out.println("You are creating an order");
@@ -28,12 +30,12 @@ public class CreateQuery {
 						ans = input.nextInt();
 					}
 					sqli.setQuanity(ans);
+					totalCost += sqli.getValue() * sqli.getQuanity();
 					items.add(sqli);
 				}
 			}else if(ans == -1) {appending = false;}
 		}
-		input.close();
-		Order final_order = new Order(customer_id, items);
+		Order final_order = new Order(customer_id, items, totalCost);
 		return final_order;
 	}
 }
