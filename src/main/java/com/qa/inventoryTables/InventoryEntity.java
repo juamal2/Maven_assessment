@@ -2,11 +2,11 @@ package com.qa.inventoryTables;
 
 import java.util.ArrayList;
 
-public abstract class InventoryEntitys {
+public abstract class InventoryEntity {
 	private int id;
 	protected ArrayList<String> field_names = new ArrayList<String>();
 	
-	public InventoryEntitys(int id) {
+	public InventoryEntity(int id) {
 		this.id = id;
 	}
 	

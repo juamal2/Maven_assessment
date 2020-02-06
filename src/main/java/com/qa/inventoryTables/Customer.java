@@ -1,6 +1,6 @@
 package com.qa.inventoryTables;
 
-public class Customer extends InventoryEntitys{
+public class Customer extends InventoryEntity{
 	
 	private String name = "";
 	public Customer(int id) {super(id);}

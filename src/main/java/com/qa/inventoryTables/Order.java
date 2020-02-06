@@ -2,7 +2,7 @@ package com.qa.inventoryTables;
 
 import java.util.ArrayList;
 
-public class Order extends InventoryEntitys{
+public class Order extends InventoryEntity{
 	private int customer_id;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private double totalCost;

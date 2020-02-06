@@ -1,6 +1,6 @@
 package com.qa.inventoryTables;
 
-public class Item extends InventoryEntitys {
+public class Item extends InventoryEntity {
 	private String name = "";
 	private double value;
 	private int quanity;
