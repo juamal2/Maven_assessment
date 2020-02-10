@@ -5,13 +5,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.qa.databases.*;
+import com.qa.inventoryTables.InventoryEntity;
 import com.qa.inventoryTables.Item;
 import com.qa.inventoryTables.Order;
 
 public class CreateQuery {
+	Scanner input = new Scanner(System.in);
+	public int getId() {
+		System.out.println("what id are your searching for:");
+		int id = input.nextInt();
+		return id;
+	}
 	
-	public Order CreateOrderItems(int customer_id, Jdbc database){
-		Scanner input = new Scanner(System.in);
+	public Order createOrderItems(int customer_id, Jdbc database){
 		ArrayList<Item> items = new ArrayList<Item>();
 		double totalCost = 0;
 		MysqlItemDao itemsql = new MysqlItemDao();

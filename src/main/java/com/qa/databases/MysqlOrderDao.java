@@ -27,15 +27,16 @@ public class MysqlOrderDao implements Dao<Order> {
 	}
 
 	@Override
-	public String read(Order t, Jdbc database) {
-		// TODO Auto-generated method stub
-		return null;
+	public String read(Jdbc database, int id) {
+		if (id >= 0) {
+			return database.selectQuery("SELECT * FROM orders WHERE id = '" + id + "'");
+		}
+		else {return "Failed";}
 	}
 
 	@Override
 	public String read(Jdbc database) {
-		// TODO Auto-generated method stub
-		return null;
+		return database.selectQuery("SELECT * FROM orders");	
 	}
 
 

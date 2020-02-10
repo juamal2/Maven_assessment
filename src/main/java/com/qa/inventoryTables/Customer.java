@@ -4,10 +4,7 @@ public class Customer extends InventoryEntity{
 	
 	private String name = "";
 	public Customer(int id) {super(id);}
-	public Customer(int id, String name){
-		super(id);
-		this.setName(name);
-	}
+
 	public Customer(String name) {
 		super(-1);
 		this.setName(name);

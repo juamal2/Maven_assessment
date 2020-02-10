@@ -1,7 +1,10 @@
 package com.qa.databases;
-import com.qa.inventoryTables.Customer;
+import com.qa.Interact.CreateQuery;
+import com.qa.inventoryTables.*;
 
 public class MysqlCustomerDao implements Dao<Customer> {
+	
+	CreateQuery createquery = new CreateQuery();
 	// CREATE CUSTOMER
 	@Override
 	public void create(Customer t, Jdbc database) {
@@ -9,12 +12,9 @@ public class MysqlCustomerDao implements Dao<Customer> {
 	}
 	// READ CUSTOMER
 	@Override
-	public String read(Customer t, Jdbc database) {
-		if (t.getId() >= 0) {
-			return database.selectQuery("SELECT * FROM customers WHERE id = '" + t.getId() + "'");
-		}
-		else if(t.getName() != "") {
-			return database.selectQuery("SELECT * FROM customers WHERE name = '" + t.getName() + "'");
+	public String read(Jdbc database, int id) {
+		if (id >= 0) {
+			return database.selectQuery("SELECT * FROM customers WHERE id = '" + id + "'");
 		}
 		else {return "Failed";}
 	}

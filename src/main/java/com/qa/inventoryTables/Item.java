@@ -6,20 +6,11 @@ public class Item extends InventoryEntity {
 	private int quanity;
 	
 	public Item(int id) {super(id);}
-	public Item(int id, String name, double value) {
-		super(id);
-		this.setName(name);
-		this.setValue(value);
-	}
-	
+
 	public Item(String name, double value) {
 		super(-1);
 		this.setName(name);
 		this.setValue(value);
-	}
-	public Item(String name) {
-		super(-1);
-		this.setName(name);
 	}
 
 	public String getName() {

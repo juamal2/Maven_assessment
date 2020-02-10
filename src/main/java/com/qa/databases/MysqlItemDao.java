@@ -26,12 +26,11 @@ public class MysqlItemDao implements Dao<Item> {
 	}
 
 	@Override
-	public String read(Item t, Jdbc database) {
-		if (t.getId() >= 0) {
-			return database.selectQuery("SELECT * FROM items WHERE id = '" + t.getId() + "'");
-		} else if (t.getName() != "") {
-			return database.selectQuery("SELECT * FROM items WHERE name = '" + t.getName() + "'");
-		} else {
+	public String read(Jdbc database, int id) {
+		if (id >= 0) {
+			return database.selectQuery("SELECT * FROM items WHERE id = '" + id + "'");
+		}
+		else {
 			return "Failed";
 		}
 	}

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import com.qa.Interact.CreateQuery;
 import com.qa.databases.*;
 import com.qa.inventoryTables.*;
+import com.qa.userinterface.Menu;
+
 
 public class Runner {
 
@@ -16,36 +18,11 @@ public class Runner {
 		Jdbc database = new Jdbc();
 		database.init("jdbc:mysql://127.0.0.1:3306/inventory", "root", "root");
 		
-//		Item item = new Item(1);
-//		item.setQuanity(2);;
-//		int key = 3;
-//		System.out.println("INSERT INTO order_line(order_id, item_id, item_amount) values(" + key + "," + item.getId() + "," + item.getQuanity() + ")");
 		
-		
-		
-		CreateQuery make = new CreateQuery();
-		
-		
-		Order order = make.CreateOrderItems(1,database);
-		
+		Menu menu = new Menu(database);
+		menu.displayMain();
+		menu.displayCrud();
 
-		MysqlOrderDao orderSql = new MysqlOrderDao();
-		
-		orderSql.create(order, database);
-		
-		
-
-		
-		
-
-		
-
-		
-		
-		
-		
-		
-		
 	}
 
 }
