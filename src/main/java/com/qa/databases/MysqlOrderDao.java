@@ -1,5 +1,7 @@
 package com.qa.databases;
 
+import java.util.Scanner;
+
 import com.qa.inventoryTables.Item;
 import com.qa.inventoryTables.Order;
 
@@ -16,8 +18,13 @@ public class MysqlOrderDao implements Dao<Order> {
 
 	@Override
 	public void update(Order t, Jdbc database) {
-		// TODO Auto-generated method stub
-		
+		this.read(database, t.getId());
+		Scanner input = new Scanner(System.in);
+		System.out.println("which item amount do you want to update enter the id:");
+		int itemId = input.nextInt();
+		System.out.println("what is the new item amount");
+		int amount = input.nextInt();
+		database.Query("UPDATE order_line SET item_amount =" + amount + "WHERE order_id =" + t.getId() + "AND item_id =" + itemId);
 	}
 
 	@Override
@@ -29,7 +36,9 @@ public class MysqlOrderDao implements Dao<Order> {
 	@Override
 	public String read(Jdbc database, int id) {
 		if (id >= 0) {
-			return database.selectQuery("SELECT * FROM orders WHERE id = '" + id + "'");
+			String order;
+			order = database.selectQuery("SELECT * FROM orders WHERE id = '" + id + "'");
+			return order += database.selectQuery("SELECT item_id, items.name,item_amount, items.value FROM order_line JOIN items ON order_line.id=items.id WHERE order_id ='"+ id + "'");
 		}
 		else {return "Failed";}
 	}

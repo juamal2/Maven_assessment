@@ -92,7 +92,7 @@ public class Jdbc {
 			while(rs.next()) {
 				String row = "";
 				for (int i = 1; i <=  meta.getColumnCount(); i++) {
-					row +=  meta.getColumnLabel(i) + " = " + rs.getString(i) + " ";
+					row +=  meta.getColumnLabel(i) + " = " + rs.getString(i) + "	 ";
 				}
 				Result += "\n" + row ;
 			}

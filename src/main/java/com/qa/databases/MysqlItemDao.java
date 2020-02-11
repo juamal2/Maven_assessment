@@ -3,6 +3,9 @@ package com.qa.databases;
 import com.qa.inventoryTables.Item;
 
 public class MysqlItemDao implements Dao<Item> {
+	public void createQuery() {
+
+	}
 
 	@Override
 	public void create(Item t, Jdbc database) {
