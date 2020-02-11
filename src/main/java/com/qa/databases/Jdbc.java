@@ -33,7 +33,7 @@ public class Jdbc {
 
 		System.out.println("Connecting database...");
 
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+		try {
 			this.connection = DriverManager.getConnection(url, username, password);
 		    System.out.println("Database connected!");
 		    return true;
