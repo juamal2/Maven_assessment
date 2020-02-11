@@ -38,7 +38,6 @@ public class Item extends InventoryEntity {
 	public void setQuanity(int quanity) {
 		this.quanity = quanity;
 	}
-
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);

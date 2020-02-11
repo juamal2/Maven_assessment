@@ -29,8 +29,11 @@ public class MysqlOrderDao implements Dao<Order> {
 
 	@Override
 	public void delete(Order t, Jdbc database) {
-		// TODO Auto-generated method stub
-		
+		this.read(database, t.getId());
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the id of the item you want to delete");
+		int itemId = input.nextInt();
+		database.Query("DELETE FROM order_line where order_id = "+ t.getId() + " and item_id =" + itemId);
 	}
 
 	@Override

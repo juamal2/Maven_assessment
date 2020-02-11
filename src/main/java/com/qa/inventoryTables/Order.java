@@ -26,10 +26,6 @@ public class Order extends InventoryEntity{
 		super(-1);
 	}
 	
-	
-	
-	
-	
 	public int getCustomer_id() {
 		return customer_id;
 	}
