@@ -16,13 +16,11 @@ public class Runner {
 	public static void main(String[] args) {
 		// Create database connection and hold
 		Jdbc database = new Jdbc();
-		database.init("jdbc:mysql://127.0.0.1:3306/inventory", "root", "root");
-		
-		
-		Menu menu = new Menu(database);
-		menu.displayMain();
-		menu.displayCrud();
-
+		if (database.init("jdbc:mysql://127.0.0.1:3306/inventory", "root", "root")) {
+			Menu menu = new Menu(database);
+			menu.displayMain();
+			menu.displayCrud();
+		}
 	}
 
 }

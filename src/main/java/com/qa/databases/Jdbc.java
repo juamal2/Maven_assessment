@@ -38,7 +38,8 @@ public class Jdbc {
 		    System.out.println("Database connected!");
 		    return true;
 		} catch (SQLException e) {
-		    throw new IllegalStateException("Cannot connect the database! WTFFFFFFFFFFF", e);
+			System.out.println("Cannot connect to database please contact juamal at juamal27@gmail.com");
+			return false;
 		}
 	}
 
@@ -73,7 +74,7 @@ public class Jdbc {
 					return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
 				}
 			}catch (SQLException ex) {
-				System.out.println("thats why am i not seeing this aww shit ");
+				System.out.println("Failed to create order invalid inputs try again");
 			}finally {
 				this.clear();
 			}
