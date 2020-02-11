@@ -77,11 +77,8 @@ public class Menu {
 			}catch(ClassCastException failCast) {
 				tableItem.userValues();
 				dao.create(tableItem, this.database);
-			}catch(NullPointerException e) {
 			}catch(InputMismatchException e) {
 				System.out.println("stopping process invaild input");
-			}
-			finally {
 			}
 			return 1;
 		case ("READ_ID"):
@@ -92,6 +89,7 @@ public class Menu {
 			System.out.println(dao.read(this.database));
 			return 3;
 		case ("Update"):
+			
 			return 4;
 		case ("Delete"):
 			return 5;
