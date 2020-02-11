@@ -35,7 +35,6 @@ public class MysqlItemDao implements Dao<Item> {
 			return "Failed";
 		}
 	}
-
 	public Item getItemFromId(Item t, Jdbc database) {
 		if (t.getId() >= 0) {
 			try {

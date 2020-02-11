@@ -51,7 +51,7 @@ public class Order extends InventoryEntity{
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter Customer Id");
+		System.out.println("Enter order Id");
 		int id =input.nextInt();
 		this.customer_id = id;
 		

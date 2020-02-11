@@ -58,6 +58,7 @@ public class Menu {
 		
 	}
 	public int displayCrud() {
+		int id;
 		System.out.println("____________________________________________\n"
 				+ "		"+this.menu+"\n"
 				+ "Create\n"
@@ -71,25 +72,27 @@ public class Menu {
 		case ("CREATE"):
 			try {
 				Order orderCreate = (Order) tableItem;
-				tableItem.userValues();
+				this.tableItem.userValues();
 				orderCreate = this.createquery.createOrderItems(orderCreate.getCustomer_id(), this.database);
-				dao.create(orderCreate, this.database);
+				this.dao.create(orderCreate, this.database);
 			}catch(ClassCastException failCast) {
-				tableItem.userValues();
-				dao.create(tableItem, this.database);
+				this.tableItem.userValues();
+				this.dao.create(tableItem, this.database);
 			}catch(InputMismatchException e) {
 				System.out.println("stopping process invaild input");
 			}
 			return 1;
 		case ("READ_ID"):
-			int id = createquery.getId();
-			System.out.println(dao.read(this.database, id));
+			id = this.createquery.getId();
+			System.out.println(this.dao.read(this.database, id));
 			return 2;
 		case ("READ ALL"):
-			System.out.println(dao.read(this.database));
+			System.out.println(this.dao.read(this.database));
 			return 3;
-		case ("Update"):
-			
+		case ("UPDATE"):
+			this.tableItem.setId(this.createquery.getId());
+			this.tableItem.userValues();
+			this.dao.update(tableItem, this.database);
 			return 4;
 		case ("Delete"):
 			return 5;
