@@ -1,19 +1,19 @@
 package com.qa.Interact;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
 import com.qa.databases.*;
-import com.qa.inventoryTables.InventoryEntity;
+
 import com.qa.inventoryTables.Item;
 import com.qa.inventoryTables.Order;
-import com.qa.runner.Runner;
+
 
 public class CreateQuery {
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(CreateQuery.class);
 	
 	Scanner input = new Scanner(System.in);
 	public int getId() {

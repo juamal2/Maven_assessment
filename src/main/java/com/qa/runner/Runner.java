@@ -1,15 +1,12 @@
 package com.qa.runner;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import org.apache.log4j.Logger;
 
-import com.qa.Interact.CreateQuery;
+
 import com.qa.databases.*;
-import com.qa.inventoryTables.*;
+
 import com.qa.userinterface.Menu;
 
 

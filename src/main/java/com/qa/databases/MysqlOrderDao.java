@@ -6,10 +6,10 @@ import org.apache.log4j.Logger;
 
 import com.qa.inventoryTables.Item;
 import com.qa.inventoryTables.Order;
-import com.qa.runner.Runner;
+
 
 public class MysqlOrderDao implements Dao<Order> {
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(MysqlOrderDao.class);
 	
 	@Override
 	public void create(Order t, Jdbc database) {
@@ -29,6 +29,7 @@ public class MysqlOrderDao implements Dao<Order> {
 		LOGGER.info("what is the new item amount");
 		int amount = input.nextInt();
 		database.Query("UPDATE order_line SET item_amount = " + amount + " WHERE order_id =" + t.getId() + " AND item_id = " + itemId);
+		input.close();
 	}
 
 	@Override
@@ -38,6 +39,7 @@ public class MysqlOrderDao implements Dao<Order> {
 		LOGGER.info("Enter the id of the item you want to delete");
 		int itemId = input.nextInt();
 		database.Query("DELETE FROM order_line where order_id = "+ t.getId() + " and item_id =" + itemId);
+		input.close();
 	}
 
 	@Override

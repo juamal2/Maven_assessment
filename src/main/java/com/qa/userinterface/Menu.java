@@ -6,14 +6,22 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.qa.Interact.CreateQuery;
-import com.qa.databases.*;
-import com.qa.inventoryTables.*;
-import com.qa.runner.Runner;
+import com.qa.databases.Dao;
+import com.qa.databases.Jdbc;
+import com.qa.databases.MysqlCustomerDao;
+import com.qa.databases.MysqlItemDao;
+import com.qa.databases.MysqlOrderDao;
+import com.qa.inventoryTables.Customer;
+import com.qa.inventoryTables.InventoryEntity;
+import com.qa.inventoryTables.Item;
+import com.qa.inventoryTables.Order;
+
 
 public class Menu {
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(Menu.class);
 	Scanner input = new Scanner(System.in);
 	Jdbc database;
+	@SuppressWarnings("rawtypes")
 	Dao dao;
 	CreateQuery createquery = new CreateQuery();
 	InventoryEntity tableItem;
@@ -23,11 +31,12 @@ public class Menu {
 		this.database = database;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Dao getDao() {
 		return dao;
 	}
 
-	public void setDao(Dao dao) {
+	public void setDao(@SuppressWarnings("rawtypes") Dao dao) {
 		this.dao = dao;
 	}
 
@@ -60,6 +69,7 @@ public class Menu {
 		}
 		
 	}
+	@SuppressWarnings("unchecked")
 	public int displayCrud() {
 		int id;
 		LOGGER.info("____________________________________________\n"

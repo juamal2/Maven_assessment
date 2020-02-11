@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.qa.runner.Runner;
+
 
 
 public class Customer extends InventoryEntity{
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(Customer.class);
 	
 	private String name = "";
 	public Customer(int id) {super(id);}
@@ -33,6 +33,7 @@ public class Customer extends InventoryEntity{
 		LOGGER.info("Enter customer name");
 		String name =input.nextLine();
 		this.name = name;
+		input.close();
 	
 	}
 }
