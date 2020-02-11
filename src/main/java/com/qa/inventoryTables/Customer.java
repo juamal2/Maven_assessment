@@ -33,7 +33,7 @@ public class Customer extends InventoryEntity{
 		LOGGER.info("Enter customer name");
 		String name =input.nextLine();
 		this.name = name;
-		input.close();
+
 	
 	}
 }

@@ -1,7 +1,7 @@
 package com.qa.databases;
 
 
-import com.qa.Interact.CreateQuery;
+import com.qa.interact.CreateQuery;
 import com.qa.inventoryTables.*;
 
 

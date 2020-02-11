@@ -52,6 +52,6 @@ public class Item extends InventoryEntity {
 		double value = input.nextDouble();
 		this.name = name;
 		this.value = value;
-		input.close();
+
 	}
 }

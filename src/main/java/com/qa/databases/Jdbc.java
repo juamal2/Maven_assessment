@@ -54,7 +54,9 @@ public class Jdbc {
 					this.rs = stmt.executeQuery(query);
 					Result = resultSet_toString(rs);
 			}catch (SQLException ex) {
-			}finally {
+				LOGGER.info("failed to change result to string");
+			}
+			finally {
 				this.clear();
 			}
 		}
@@ -67,16 +69,13 @@ public class Jdbc {
 			try {
 				this.stmt = this.connection.createStatement();
 				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				if (null != stmt.getGeneratedKeys()) {
-					String keys = resultSet_toString(stmt.getGeneratedKeys());
-					try {
-					return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
-					}catch(NumberFormatException e) {
-					}
-				}
+				String keys = resultSet_toString(stmt.getGeneratedKeys());
+				return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
 			}catch (SQLException ex) {
 				LOGGER.info("Failed to create order invalid inputs try again");
-			}finally {
+			}catch (NumberFormatException ex) {
+			}
+			finally {
 				this.clear();
 			}
 		}
@@ -107,12 +106,12 @@ public class Jdbc {
 	public void clear() {
 		if (this.rs != null) {
 			try {this.rs.close();
-			}catch(SQLException sqlEx) {}
+			}catch(SQLException sqlEx) {LOGGER.info("failed to close resultset");}
 			this.rs = null;
 		}
 		if (this.stmt != null) {
 			try {this.stmt.close();
-			}catch(SQLException sqlEx) {}
+			}catch(SQLException sqlEx) {LOGGER.info("failed to close statement");}
 			this.stmt = null;
 		}
 	}
@@ -128,8 +127,6 @@ public class Jdbc {
 				return true;
 			}
 		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return false;
 		}
 		return false;
