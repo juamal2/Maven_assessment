@@ -1,5 +1,6 @@
 package com.qa.userinterface;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.qa.Interact.CreateQuery;
@@ -12,6 +13,7 @@ public class Menu {
 	Jdbc database;
 	Dao dao;
 	CreateQuery createquery = new CreateQuery();
+	InventoryEntity tableItem;
 	String menu;
 	
 	public Menu(Jdbc database) {
@@ -37,14 +39,17 @@ public class Menu {
 		switch (choice){
 			case ("CUSTOMERS"):
 				this.dao = new MysqlCustomerDao();
+				this.tableItem = new Customer();
 				this.menu = "Customer";
 				return true;
 			case ("ITEMS"):
 				this.dao = new MysqlItemDao();
+				this.tableItem = new Item();
 				this.menu = "Items";
 				return true;
 			case ("ORDERS"):
 				this.dao = new MysqlOrderDao();
+				this.tableItem = new Order();
 				this.menu = "Order";
 				return true;
 			default:
@@ -63,7 +68,18 @@ public class Menu {
 		String choice = this.input.nextLine();
 		choice = choice.toUpperCase();
 		switch (choice){
-		case ("Create"):
+		case ("CREATE"):
+			try {
+				Order orderCreate = (Order) tableItem;
+				tableItem.userValues();
+				orderCreate = this.createquery.createOrderItems(orderCreate.getCustomer_id(), this.database);
+				dao.create(orderCreate, this.database);
+			}catch(ClassCastException failCast) {
+				tableItem.userValues();
+				dao.create(tableItem, this.database);
+			}catch(InputMismatchException e) {
+				System.out.println("stopping process invaild input");
+			}
 			return 1;
 		case ("READ_ID"):
 			int id = createquery.getId();
@@ -73,6 +89,7 @@ public class Menu {
 			System.out.println(dao.read(this.database));
 			return 3;
 		case ("Update"):
+			
 			return 4;
 		case ("Delete"):
 			return 5;
