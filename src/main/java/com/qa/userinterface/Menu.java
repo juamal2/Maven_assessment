@@ -58,6 +58,7 @@ public class Menu {
 		
 	}
 	public int displayCrud() {
+		int id;
 		System.out.println("____________________________________________\n"
 				+ "		"+this.menu+"\n"
 				+ "Create\n"
@@ -82,13 +83,14 @@ public class Menu {
 			}
 			return 1;
 		case ("READ_ID"):
-			int id = this.createquery.getId();
+			id = this.createquery.getId();
 			System.out.println(this.dao.read(this.database, id));
 			return 2;
 		case ("READ ALL"):
 			System.out.println(this.dao.read(this.database));
 			return 3;
 		case ("UPDATE"):
+			this.tableItem.setId(this.createquery.getId());
 			this.tableItem.userValues();
 			this.dao.update(tableItem, this.database);
 			return 4;

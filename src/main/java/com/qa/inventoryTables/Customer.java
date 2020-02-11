@@ -2,6 +2,7 @@ package com.qa.inventoryTables;
 
 import java.util.Scanner;
 
+
 public class Customer extends InventoryEntity{
 	
 	private String name = "";
@@ -24,10 +25,9 @@ public class Customer extends InventoryEntity{
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter item name");
+		System.out.println("Enter customer name");
 		String name =input.nextLine();
 		this.name = name;
-
-		
+	
 	}
 }

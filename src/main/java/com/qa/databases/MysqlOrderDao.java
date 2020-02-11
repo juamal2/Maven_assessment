@@ -20,11 +20,11 @@ public class MysqlOrderDao implements Dao<Order> {
 	public void update(Order t, Jdbc database) {
 		this.read(database, t.getId());
 		Scanner input = new Scanner(System.in);
-		System.out.println("which item amount do you want to update enter the id:");
+		System.out.println("Enter the id of the item you want to update:");
 		int itemId = input.nextInt();
 		System.out.println("what is the new item amount");
 		int amount = input.nextInt();
-		database.Query("UPDATE order_line SET item_amount =" + amount + "WHERE order_id =" + t.getId() + "AND item_id =" + itemId);
+		database.Query("UPDATE order_line SET item_amount = " + amount + " WHERE order_id =" + t.getId() + " AND item_id = " + itemId);
 	}
 
 	@Override

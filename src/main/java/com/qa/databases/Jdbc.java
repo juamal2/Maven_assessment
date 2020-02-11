@@ -71,7 +71,10 @@ public class Jdbc {
 				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 				if (null != stmt.getGeneratedKeys()) {
 					String keys = resultSet_toString(stmt.getGeneratedKeys());
+					try {
 					return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
+					}catch(NumberFormatException e) {
+					}
 				}
 			}catch (SQLException ex) {
 				System.out.println("Failed to create order invalid inputs try again");
@@ -82,9 +85,6 @@ public class Jdbc {
 		return result;
 	}
 	
-	
-	
-
 	
 	public String resultSet_toString(ResultSet rs){
 		String Result = "";
