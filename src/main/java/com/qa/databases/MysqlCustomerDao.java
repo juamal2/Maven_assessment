@@ -1,6 +1,9 @@
 package com.qa.databases;
+import org.apache.log4j.Logger;
+
 import com.qa.Interact.CreateQuery;
 import com.qa.inventoryTables.*;
+import com.qa.runner.Runner;
 
 public class MysqlCustomerDao implements Dao<Customer> {
 	

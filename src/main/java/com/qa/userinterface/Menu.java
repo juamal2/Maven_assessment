@@ -3,12 +3,15 @@ package com.qa.userinterface;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.qa.Interact.CreateQuery;
 import com.qa.databases.*;
 import com.qa.inventoryTables.*;
+import com.qa.runner.Runner;
 
 public class Menu {
-
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
 	Scanner input = new Scanner(System.in);
 	Jdbc database;
 	Dao dao;
@@ -29,7 +32,7 @@ public class Menu {
 	}
 
 	public boolean displayMain() {
-		System.out.println("____________________________________________\n"
+		LOGGER.info("____________________________________________\n"
 				+ "Customers\n"
 				+ "Items\n"
 				+ "Orders\n"
@@ -59,7 +62,7 @@ public class Menu {
 	}
 	public int displayCrud() {
 		int id;
-		System.out.println("____________________________________________\n"
+		LOGGER.info("____________________________________________\n"
 				+ "		"+this.menu+"\n"
 				+ "Create\n"
 				+ "Read\n"
@@ -79,15 +82,15 @@ public class Menu {
 				this.tableItem.userValues();
 				this.dao.create(tableItem, this.database);
 			}catch(InputMismatchException e) {
-				System.out.println("stopping process invaild input");
+				LOGGER.info("stopping process invaild input");
 			}
 			return 1;
 		case ("READ_ID"):
 			id = this.createquery.getId();
-			System.out.println(this.dao.read(this.database, id));
+			LOGGER.info(this.dao.read(this.database, id));
 			return 2;
 		case ("READ ALL"):
-			System.out.println(this.dao.read(this.database));
+			LOGGER.info(this.dao.read(this.database));
 			return 3;
 		case ("UPDATE"):
 			this.tableItem.setId(this.createquery.getId());
