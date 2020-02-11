@@ -52,7 +52,7 @@ public class Order extends InventoryEntity{
 		LOGGER.info("Enter order Id");
 		int id =input.nextInt();
 		this.customer_id = id;
-		input.close();
+
 		
 
 	}

@@ -1,4 +1,4 @@
-package com.qa.Interact;
+package com.qa.interact;
 
 import java.util.ArrayList;
 
@@ -16,10 +16,11 @@ public class CreateQuery {
 	public static final Logger LOGGER = Logger.getLogger(CreateQuery.class);
 	
 	Scanner input = new Scanner(System.in);
+	
+	
 	public int getId() {
 		LOGGER.info("what id are your searching for:");
-		int id = input.nextInt();
-		return id;
+		return input.nextInt();
 	}
 	
 	public Order createOrderItems(int customer_id, Jdbc database){
@@ -46,7 +47,7 @@ public class CreateQuery {
 				}
 			}else if(ans == -1) {appending = false;}
 		}
-		Order final_order = new Order(customer_id, items, totalCost);
-		return final_order;
+		return new Order(customer_id, items, totalCost);
+
 	}
 }

@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.qa.Interact.CreateQuery;
 import com.qa.databases.Dao;
 import com.qa.databases.Jdbc;
 import com.qa.databases.MysqlCustomerDao;
 import com.qa.databases.MysqlItemDao;
 import com.qa.databases.MysqlOrderDao;
+import com.qa.interact.CreateQuery;
 import com.qa.inventoryTables.Customer;
 import com.qa.inventoryTables.InventoryEntity;
 import com.qa.inventoryTables.Item;
