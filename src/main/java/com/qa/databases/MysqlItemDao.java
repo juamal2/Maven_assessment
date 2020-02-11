@@ -1,9 +1,12 @@
 package com.qa.databases;
 
+import org.apache.log4j.Logger;
+
 import com.qa.inventoryTables.Item;
+import com.qa.runner.Runner;
 
 public class MysqlItemDao implements Dao<Item> {
-
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
 
 	@Override
 	public void create(Item t, Jdbc database) {
@@ -44,11 +47,11 @@ public class MysqlItemDao implements Dao<Item> {
 			item.setValue(Double.parseDouble(valueStr));
 			String nameStr = database.selectQuery("SELECT name FROM items WHERE id = '" + t.getId() + "'");
 			item.setName(nameStr.replace("name = ", "").trim());
-			System.out.println("you selected: " + item.getName() + "cost: " + item.getValue() );
+			LOGGER.info("you selected: " + item.getName() + "cost: " + item.getValue() );
 			return item;
 			}
 			catch(NumberFormatException e) {
-				System.out.println("invalid id");
+				LOGGER.info("invalid id");
 				return new Item(-1);
 			}
 		}else {	return new Item(-1);}

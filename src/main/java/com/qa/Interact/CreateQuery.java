@@ -4,15 +4,20 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.qa.databases.*;
 import com.qa.inventoryTables.InventoryEntity;
 import com.qa.inventoryTables.Item;
 import com.qa.inventoryTables.Order;
+import com.qa.runner.Runner;
 
 public class CreateQuery {
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	
 	Scanner input = new Scanner(System.in);
 	public int getId() {
-		System.out.println("what id are your searching for:");
+		LOGGER.info("what id are your searching for:");
 		int id = input.nextInt();
 		return id;
 	}
@@ -22,9 +27,9 @@ public class CreateQuery {
 		double totalCost = 0;
 		MysqlItemDao itemsql = new MysqlItemDao();
 		boolean appending = true;
-		System.out.println("You are creating an order");
+		LOGGER.info("You are creating an order");
 		while (appending) {
-			System.out.println("Enter the id of the item you would like to add to your order or enter -1 to stop");
+			LOGGER.info("Enter the id of the item you would like to add to your order or enter -1 to stop");
 			int ans = input.nextInt();
 			if (ans != -1) {
 				Item sqli = new Item(ans);
@@ -32,7 +37,7 @@ public class CreateQuery {
 				if (sqli.getId() != -1) {
 					ans = 0;
 					while (ans <= 0) {
-						System.out.println("how many would you like to purchase? must be 1 or more");
+						LOGGER.info("how many would you like to purchase? must be 1 or more");
 						ans = input.nextInt();
 					}
 					sqli.setQuanity(ans);

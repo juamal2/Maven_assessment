@@ -9,9 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.qa.runner.Runner;
+
 
 public class Jdbc {
 	
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
 	private String url;
 	private String username;
 	private String password;
@@ -31,14 +36,14 @@ public class Jdbc {
 		this.username = username;
 		this.password = password;
 
-		System.out.println("Connecting database...");
+		LOGGER.info("Connecting database...");
 
 		try {
 			this.connection = DriverManager.getConnection(url, username, password);
-		    System.out.println("Database connected!");
+			LOGGER.info("Database connected!");
 		    return true;
 		} catch (SQLException e) {
-			System.out.println("Cannot connect to database please contact juamal at juamal27@gmail.com");
+			LOGGER.info("Cannot connect to database please contact juamal at juamal27@gmail.com");
 			return false;
 		}
 	}
@@ -77,7 +82,7 @@ public class Jdbc {
 					}
 				}
 			}catch (SQLException ex) {
-				System.out.println("Failed to create order invalid inputs try again");
+				LOGGER.info("Failed to create order invalid inputs try again");
 			}finally {
 				this.clear();
 			}

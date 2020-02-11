@@ -2,8 +2,13 @@ package com.qa.inventoryTables;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
+import com.qa.runner.Runner;
+
 
 public class Customer extends InventoryEntity{
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
 	
 	private String name = "";
 	public Customer(int id) {super(id);}
@@ -25,7 +30,7 @@ public class Customer extends InventoryEntity{
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter customer name");
+		LOGGER.info("Enter customer name");
 		String name =input.nextLine();
 		this.name = name;
 	
