@@ -33,7 +33,7 @@ public class Jdbc {
 
 		System.out.println("Connecting database...");
 
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+		try {
 			this.connection = DriverManager.getConnection(url, username, password);
 		    System.out.println("Database connected!");
 		    return true;
@@ -92,7 +92,7 @@ public class Jdbc {
 			while(rs.next()) {
 				String row = "";
 				for (int i = 1; i <=  meta.getColumnCount(); i++) {
-					row +=  meta.getColumnLabel(i) + " = " + rs.getString(i) + " ";
+					row +=  meta.getColumnLabel(i) + " = " + rs.getString(i) + "	 ";
 				}
 				Result += "\n" + row ;
 			}

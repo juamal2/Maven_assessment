@@ -1,5 +1,7 @@
 package com.qa.inventoryTables;
 
+import java.util.Scanner;
+
 public class Item extends InventoryEntity {
 	private String name = "";
 	private double value;
@@ -12,7 +14,9 @@ public class Item extends InventoryEntity {
 		this.setName(name);
 		this.setValue(value);
 	}
-
+	public Item() {
+		super(-1);
+	}
 	public String getName() {
 		return name;
 	}
@@ -33,5 +37,16 @@ public class Item extends InventoryEntity {
 	}
 	public void setQuanity(int quanity) {
 		this.quanity = quanity;
+	}
+
+	@Override
+	public void userValues() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter item name");
+		String name =input.nextLine();
+		System.out.println("Enter item value");
+		double value = input.nextDouble();
+		this.name = name;
+		this.value = value;
 	}
 }

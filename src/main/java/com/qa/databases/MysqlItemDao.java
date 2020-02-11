@@ -4,6 +4,7 @@ import com.qa.inventoryTables.Item;
 
 public class MysqlItemDao implements Dao<Item> {
 
+
 	@Override
 	public void create(Item t, Jdbc database) {
 		database.Query("INSERT INTO items(name, value) VALUES('" + t.getName() + "','" + t.getValue() + "')");

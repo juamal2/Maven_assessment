@@ -1,6 +1,9 @@
 package com.qa.inventoryTables;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.qa.Interact.CreateQuery;
 
 public class Order extends InventoryEntity{
 	private int customer_id;
@@ -19,7 +22,9 @@ public class Order extends InventoryEntity{
 		this.setTotalCost(totalCost);
 	}
 	
-	
+	public Order() {
+		super(-1);
+	}
 	
 	
 	
@@ -42,6 +47,15 @@ public class Order extends InventoryEntity{
 	}
 	public void setItems(ArrayList<Item> items) {
 		this.items = items;
+	}
+	@Override
+	public void userValues() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter Customer Id");
+		int id =input.nextInt();
+		this.customer_id = id;
+		
+
 	}
 	
 	
