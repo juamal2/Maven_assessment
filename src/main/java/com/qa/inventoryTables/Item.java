@@ -2,7 +2,12 @@ package com.qa.inventoryTables;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
+import com.qa.runner.Runner;
+
 public class Item extends InventoryEntity {
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
 	private String name = "";
 	private double value;
 	private int quanity;
@@ -41,11 +46,12 @@ public class Item extends InventoryEntity {
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter item name");
+		LOGGER.info("Enter item name");
 		String name =input.nextLine();
-		System.out.println("Enter item value");
+		LOGGER.info("Enter item value");
 		double value = input.nextDouble();
 		this.name = name;
 		this.value = value;
+		input.close();
 	}
 }

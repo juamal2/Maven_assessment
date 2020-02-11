@@ -3,9 +3,14 @@ package com.qa.inventoryTables;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.qa.Interact.CreateQuery;
+import com.qa.runner.Runner;
 
 public class Order extends InventoryEntity{
+	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	
 	private int customer_id;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private double totalCost;
@@ -47,9 +52,10 @@ public class Order extends InventoryEntity{
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter order Id");
+		LOGGER.info("Enter order Id");
 		int id =input.nextInt();
 		this.customer_id = id;
+		input.close();
 		
 
 	}
