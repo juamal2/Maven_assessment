@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import com.qa.runner.Runner;
 
 public class Item extends InventoryEntity {
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(Item.class);
 	private String name = "";
 	private double value;
 	private int quanity;

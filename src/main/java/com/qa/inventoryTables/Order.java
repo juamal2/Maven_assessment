@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.qa.Interact.CreateQuery;
-import com.qa.runner.Runner;
 
 public class Order extends InventoryEntity{
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(Order.class);
 	
 	private int customer_id;
 	private ArrayList<Item> items = new ArrayList<Item>();
@@ -18,7 +16,6 @@ public class Order extends InventoryEntity{
 	
 	public Order(int id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 	public Order(int customer_id, ArrayList<Item> items, double totalCost) {
 		super(-1);

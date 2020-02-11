@@ -3,10 +3,10 @@ package com.qa.databases;
 import org.apache.log4j.Logger;
 
 import com.qa.inventoryTables.Item;
-import com.qa.runner.Runner;
+
 
 public class MysqlItemDao implements Dao<Item> {
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
+	public static final Logger LOGGER = Logger.getLogger(MysqlItemDao.class);
 
 	@Override
 	public void create(Item t, Jdbc database) {

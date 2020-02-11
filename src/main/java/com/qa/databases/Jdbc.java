@@ -6,24 +6,21 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.apache.log4j.Logger;
 
-import com.qa.runner.Runner;
+
 
 
 public class Jdbc {
 	
-	public static final Logger LOGGER = Logger.getLogger(Runner.class);
-	private String url;
-	private String username;
-	private String password;
+	public static final Logger LOGGER = Logger.getLogger(Jdbc.class);
+
 	private Connection connection;
 	private Statement stmt = null;
 	private ResultSet rs = null;
-	private ResultSet rstest = null;
+
 	
 	/**
 	 * init Jdbc instance, returns true if connection was complete
@@ -32,10 +29,6 @@ public class Jdbc {
 	 * @param password database password
 	 */
 	public boolean init(String url, String username, String password) {
-		this.url = url;
-		this.username = username;
-		this.password = password;
-
 		LOGGER.info("Connecting database...");
 
 		try {
