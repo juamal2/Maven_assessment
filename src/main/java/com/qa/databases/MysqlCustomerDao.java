@@ -11,7 +11,7 @@ public class MysqlCustomerDao implements Dao<Customer> {
 	// CREATE CUSTOMER
 	@Override
 	public void create(Customer t, Jdbc database) {
-		database.Query("INSERT INTO customers(name) VALUES('" + t.getName() + "')");
+		database.query("INSERT INTO customers(name) VALUES('" + t.getName() + "')");
 	}
 	// READ CUSTOMER
 	@Override
@@ -29,17 +29,17 @@ public class MysqlCustomerDao implements Dao<Customer> {
 	@Override
 	public void update(Customer t, Jdbc database) {
 		if (t.getId() >= 0) {
-			database.Query("Update customers set name='" + t.getName() + "' where id='" + t.getId() + "'");
+			database.query("Update customers set name='" + t.getName() + "' where id='" + t.getId() + "'");
 		}
 	}
 	// DELETE
 	@Override
 	public void delete(Customer t, Jdbc database) {
 		if (t.getId() >= 0) {
-			database.Query("DELETE FROM customers where id='" + t.getId() + "'");
+			database.query("DELETE FROM customers where id='" + t.getId() + "'");
 		}
-		else if(t.getName() != "") {
-			database.Query("DELETE FROM customers where name='" + t.getName() + "'");
+		else if(!t.getName().equals("")) {
+			database.query("DELETE FROM customers where name='" + t.getName() + "'");
 		}
 	}
 	

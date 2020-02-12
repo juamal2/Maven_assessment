@@ -10,14 +10,14 @@ public class MysqlItemDao implements Dao<Item> {
 
 	@Override
 	public void create(Item t, Jdbc database) {
-		database.Query("INSERT INTO items(name, value) VALUES('" + t.getName() + "','" + t.getValue() + "')");
+		database.query("INSERT INTO items(name, value) VALUES('" + t.getName() + "','" + t.getValue() + "')");
 	}
 
 	@Override
 	public void update(Item t, Jdbc database) {
 		// TODO Auto-generated method stub
-		if (t.getId() >= 0 && t.getName() != "" && t.getValue() != 0.0) {
-			database.Query("Update items set name='" + t.getName() + "', value='" + t.getValue() + "' where id='"
+		if (t.getId() >= 0 && !t.getName().equals("") && t.getValue() != 0.0) {
+			database.query("Update items set name='" + t.getName() + "', value='" + t.getValue() + "' where id='"
 					+ t.getId() + "'");
 		}
 	}
@@ -25,7 +25,7 @@ public class MysqlItemDao implements Dao<Item> {
 	@Override
 	public void delete(Item t, Jdbc database) {
 		if (t.getId() >= 0) {
-			database.Query("DELETE FROM items where id='" + t.getId() + "'");
+			database.query("DELETE FROM items where id='" + t.getId() + "'");
 		}
 	}
 

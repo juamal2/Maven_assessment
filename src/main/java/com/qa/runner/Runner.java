@@ -18,11 +18,12 @@ public class Runner {
 		
 		
 		Jdbc database = new Jdbc();
-		if (database.init("jdbc:mysql://35.187.121.181:3306/inventory", "root", "Superspider23")) {
+		if (database.init("jdbc:mysql://127.0.0.1:3306/inventory", "root", "root")) {
 			Menu menu = new Menu(database);
 			LOGGER.info("hello");
 			menu.displayMain();
 			menu.displayCrud();
+			
 		}
 	}
 

@@ -13,10 +13,10 @@ public class MysqlOrderDao implements Dao<Order> {
 	
 	@Override
 	public void create(Order t, Jdbc database) {
-		int key = database.Query("INSERT INTO orders(customer_id, cost) values(" + t.getCustomer_id() + "," + t.getTotal_cost() + ")");
+		int key = database.query("INSERT INTO orders(customer_id, cost) values(" + t.getCustomerId() + "," + t.getTotalCost() + ")");
 		LOGGER.info(key);
 		for (Item item : t.getItems()) {
-			database.Query("INSERT INTO order_line(order_id, item_id, item_amount) values(" + key + "," + item.getId() + "," + item.getQuanity() + ")");
+			database.query("INSERT INTO order_line(order_id, item_id, item_amount) values(" + key + "," + item.getId() + "," + item.getQuanity() + ")");
 		}
 	}
 
@@ -28,7 +28,7 @@ public class MysqlOrderDao implements Dao<Order> {
 		int itemId = input.nextInt();
 		LOGGER.info("what is the new item amount");
 		int amount = input.nextInt();
-		database.Query("UPDATE order_line SET item_amount = " + amount + " WHERE order_id =" + t.getId() + " AND item_id = " + itemId);
+		database.query("UPDATE order_line SET item_amount = " + amount + " WHERE order_id =" + t.getId() + " AND item_id = " + itemId);
 		input.close();
 	}
 
@@ -38,7 +38,7 @@ public class MysqlOrderDao implements Dao<Order> {
 		Scanner input = new Scanner(System.in);
 		LOGGER.info("Enter the id of the item you want to delete");
 		int itemId = input.nextInt();
-		database.Query("DELETE FROM order_line where order_id = "+ t.getId() + " and item_id =" + itemId);
+		database.query("DELETE FROM order_line where order_id = "+ t.getId() + " and item_id =" + itemId);
 		input.close();
 	}
 

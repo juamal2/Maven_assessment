@@ -1,6 +1,7 @@
 package com.qa.inventoryTables;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -9,17 +10,17 @@ import org.apache.log4j.Logger;
 public class Order extends InventoryEntity{
 	public static final Logger LOGGER = Logger.getLogger(Order.class);
 	
-	private int customer_id;
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private int customerId;
+	private List<Item> items = new ArrayList<>();
 	private double totalCost;
 	
 	
 	public Order(int id) {
 		super(id);
 	}
-	public Order(int customer_id, ArrayList<Item> items, double totalCost) {
+	public Order(int customerId, ArrayList<Item> items, double totalCost) {
 		super(-1);
-		this.setCustomer_id(customer_id);
+		this.setCustomerId(customerId);
 		this.setItems(items);
 		this.setTotalCost(totalCost);
 	}
@@ -28,22 +29,22 @@ public class Order extends InventoryEntity{
 		super(-1);
 	}
 	
-	public int getCustomer_id() {
-		return customer_id;
+	public int getCustomerId() {
+		return customerId;
 	}
-	public void setCustomer_id(int customer_id) {
-		this.customer_id = customer_id;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
-	public double getTotal_cost() {
+	public double getTotalCost() {
 		return totalCost;
 	}
-	public void setTotalCost(double totalCost2) {
-		this.totalCost = totalCost2;
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
 	}
-	public ArrayList<Item> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
-	public void setItems(ArrayList<Item> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 	@Override
@@ -51,7 +52,7 @@ public class Order extends InventoryEntity{
 		Scanner input = new Scanner(System.in);
 		LOGGER.info("Enter order Id");
 		int id =input.nextInt();
-		this.customer_id = id;
+		this.customerId = id;
 
 		
 
