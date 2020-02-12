@@ -18,17 +18,23 @@ public class Runner {
 		
 		
 		Jdbc database = new Jdbc();
-		if (database.init("jdbc:mysql://127.0.0.1:3306/inventory", "root", "root")) {
-			Menu menu = new Menu(database);
+		if (database.init("jdbc:mysql://35.187.121.181:3306/inventory", "root", "Superspider23")) {
 			
 			
-			while (menu.isRunning()) {
-				if (!menu.displayMain()){
-				}else {
-					while(menu.displayCrud()) {
-					}
-				}
-			}
+			MysqlOrderDao orderdao = new MysqlOrderDao();
+			
+			orderdao.updateCosts(database);
+			
+			
+			
+//			Menu menu = new Menu(database);
+//			while (menu.isRunning()) {
+//				if (!menu.displayMain()){
+//				}else {
+//					while(menu.displayCrud()) {
+//					}
+//				}
+//			}
 			
 			
 			

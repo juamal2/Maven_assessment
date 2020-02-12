@@ -56,6 +56,5 @@ public class CreateQuery {
 			}else if(ans == -1) {appending = false;}
 		}
 		return new Order(customerId, items, totalCost);
-
 	}
 }
