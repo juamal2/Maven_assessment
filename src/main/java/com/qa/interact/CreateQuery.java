@@ -7,9 +7,8 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.qa.databases.*;
-
-import com.qa.inventoryTables.Item;
-import com.qa.inventoryTables.Order;
+import com.qa.inventorytables.Item;
+import com.qa.inventorytables.Order;
 
 
 public class CreateQuery {
@@ -32,8 +31,8 @@ public class CreateQuery {
 	 * @param database Instance of Jdbc database used to execute query Jdbc must be connected prior to function execution
 	 * @return returns complete Instance of Order class for Jdbc query or OrderDao
 	 */
-	public Order createOrderItems(int customer_id, Jdbc database){
-		ArrayList<Item> items = new ArrayList<Item>();
+	public Order createOrderItems(int customerId, Jdbc database){
+		ArrayList<Item> items = new ArrayList<>();
 		double totalCost = 0;
 		MysqlItemDao itemsql = new MysqlItemDao();
 		boolean appending = true;
@@ -56,7 +55,7 @@ public class CreateQuery {
 				}
 			}else if(ans == -1) {appending = false;}
 		}
-		return new Order(customer_id, items, totalCost);
+		return new Order(customerId, items, totalCost);
 
 	}
 }

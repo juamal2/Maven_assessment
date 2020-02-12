@@ -1,10 +1,10 @@
-package com.qa.inventoryTables;
+package com.qa.inventorytables;
 
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.qa.runner.Runner;
+
 
 public class Item extends InventoryEntity {
 	public static final Logger LOGGER = Logger.getLogger(Item.class);
@@ -47,11 +47,11 @@ public class Item extends InventoryEntity {
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
 		LOGGER.info("Enter item name");
-		String name =input.nextLine();
+		String nameInput =input.nextLine();
 		LOGGER.info("Enter item value");
-		double value = input.nextDouble();
-		this.name = name;
-		this.value = value;
+		double valueInput = input.nextDouble();
+		this.name = nameInput;
+		this.value = valueInput;
 
 	}
 }
