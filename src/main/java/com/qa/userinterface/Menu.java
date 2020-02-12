@@ -25,7 +25,7 @@ public class Menu {
 	Dao dao;
 	CreateQuery createquery = new CreateQuery();
 	InventoryEntity tableItem;
-	String menu;
+	String menuLbl;
 	
 	public Menu(Jdbc database) {
 		this.database = database;
@@ -52,17 +52,17 @@ public class Menu {
 			case ("CUSTOMERS"):
 				this.dao = new MysqlCustomerDao();
 				this.tableItem = new Customer();
-				this.menu = "Customer";
+				this.menuLbl = "Customer";
 				return true;
 			case ("ITEMS"):
 				this.dao = new MysqlItemDao();
 				this.tableItem = new Item();
-				this.menu = "Items";
+				this.menuLbl = "Items";
 				return true;
 			case ("ORDERS"):
 				this.dao = new MysqlOrderDao();
 				this.tableItem = new Order();
-				this.menu = "Order";
+				this.menuLbl = "Order";
 				return true;
 			default:
 				return false;
@@ -73,7 +73,7 @@ public class Menu {
 	public int displayCrud() {
 		int id;
 		LOGGER.info("____________________________________________\n"
-				+ "		"+this.menu+"\n"
+				+ "		"+this.menuLbl+"\n"
 				+ "Create\n"
 				+ "Read\n"
 				+ "Update\n"
@@ -86,7 +86,7 @@ public class Menu {
 			try {
 				Order orderCreate = (Order) tableItem;
 				this.tableItem.userValues();
-				orderCreate = this.createquery.createOrderItems(orderCreate.getCustomer_id(), this.database);
+				orderCreate = this.createquery.createOrderItems(orderCreate.getCustomerId(), this.database);
 				this.dao.create(orderCreate, this.database);
 			}catch(ClassCastException failCast) {
 				this.tableItem.userValues();

@@ -19,7 +19,7 @@ public class Jdbc {
 
 	private Connection connection;
 	private Statement stmt = null;
-	private ResultSet rs = null;
+	private ResultSet resultSet = null;
 
 	
 	/**
@@ -47,12 +47,12 @@ public class Jdbc {
 	 * @return String("failed") if query fails or result of query : String( id = 1 name = "name")
 	 */
 	public String selectQuery(String query) {
-		String Result = "failed";
-		if (this.isValid()) {
+		String result = "failed";
+		if (Boolean.TRUE.equals(isValid())) {
 			try {
 				this.stmt = this.connection.createStatement();
-					this.rs = stmt.executeQuery(query);
-					Result = resultSet_toString(rs);
+					this.resultSet = stmt.executeQuery(query);
+					result = resultSetToString(resultSet);
 			}catch (SQLException ex) {
 				LOGGER.info("failed to change result to string");
 			}
@@ -60,16 +60,16 @@ public class Jdbc {
 				this.clear();
 			}
 		}
-		return Result;
+		return result;
 	}
 	
-	public int Query(String query) {
+	public int query(String query) {
 		int result =-1;
-		if (this.isValid()) {
+		if (Boolean.TRUE.equals(isValid())) {
 			try {
 				this.stmt = this.connection.createStatement();
 				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				String keys = resultSet_toString(stmt.getGeneratedKeys());
+				String keys = resultSetToString(stmt.getGeneratedKeys());
 				return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
 			}catch (SQLException ex) {
 				LOGGER.info("Failed to create order invalid inputs try again");
@@ -83,8 +83,8 @@ public class Jdbc {
 	}
 	
 	
-	public String resultSet_toString(ResultSet rs){
-		String Result = "";
+	public String resultSetToString(ResultSet rs){
+		String result = "";
 		try {
 			ResultSetMetaData meta = rs.getMetaData();
 			while(rs.next()) {
@@ -92,22 +92,22 @@ public class Jdbc {
 				for (int i = 1; i <=  meta.getColumnCount(); i++) {
 					row +=  meta.getColumnLabel(i) + " = " + rs.getString(i) + "	 ";
 				}
-				Result += "\n" + row ;
+				result += "\n" + row ;
 			}
 		}
 		catch(SQLException e) {
-			Result = "null";
+			result = "null";
 		}
 
-		return Result;
+		return result;
 	}
 	
 	
 	public void clear() {
-		if (this.rs != null) {
-			try {this.rs.close();
+		if (this.resultSet != null) {
+			try {this.resultSet.close();
 			}catch(SQLException sqlEx) {LOGGER.info("failed to close resultset");}
-			this.rs = null;
+			this.resultSet = null;
 		}
 		if (this.stmt != null) {
 			try {this.stmt.close();
