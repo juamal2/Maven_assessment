@@ -17,12 +17,21 @@ public class CreateQuery {
 	
 	Scanner input = new Scanner(System.in);
 	
-	
+	/**
+	 * Asks user for the primary key they are searching for
+	 * @return user Integer input, should be validated after
+	 */
 	public int getId() {
 		LOGGER.info("what id are your searching for:");
 		return input.nextInt();
 	}
 	
+	/**
+	 * Create instance of Order class ready for OrderDao to execute with Jdbc query. 
+	 * @param customer_id Id of customer who is making order EG: 1, all customers id's are stored in database
+	 * @param database Instance of Jdbc database used to execute query Jdbc must be connected prior to function execution
+	 * @return returns complete Instance of Order class for Jdbc query or OrderDao
+	 */
 	public Order createOrderItems(int customer_id, Jdbc database){
 		ArrayList<Item> items = new ArrayList<Item>();
 		double totalCost = 0;
