@@ -37,7 +37,6 @@ public class Jdbc {
 	 */
 	public boolean init(String url, String username, String password) {
 		LOGGER.info("Connecting database...");
-
 		try {
 			this.connection = DriverManager.getConnection(url, username, password);
 			LOGGER.info("Database connected!");
