@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Admin
+ * @author JuamalBlackman
  *
  */
 package com.qa.inventorytables;
