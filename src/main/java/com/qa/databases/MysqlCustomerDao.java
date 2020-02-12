@@ -2,7 +2,7 @@ package com.qa.databases;
 
 
 import com.qa.interact.CreateQuery;
-import com.qa.inventoryTables.*;
+import com.qa.inventorytables.*;
 
 
 public class MysqlCustomerDao implements Dao<Customer> {

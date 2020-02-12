@@ -2,7 +2,7 @@ package com.qa.databases;
 
 import org.apache.log4j.Logger;
 
-import com.qa.inventoryTables.Item;
+import com.qa.inventorytables.Item;
 
 
 public class MysqlItemDao implements Dao<Item> {
@@ -15,7 +15,6 @@ public class MysqlItemDao implements Dao<Item> {
 
 	@Override
 	public void update(Item t, Jdbc database) {
-		// TODO Auto-generated method stub
 		if (t.getId() >= 0 && !t.getName().equals("") && t.getValue() != 0.0) {
 			database.query("Update items set name='" + t.getName() + "', value='" + t.getValue() + "' where id='"
 					+ t.getId() + "'");

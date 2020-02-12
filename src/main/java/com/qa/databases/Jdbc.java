@@ -86,6 +86,7 @@ public class Jdbc {
 			}catch (SQLException ex) {
 				LOGGER.info("Failed to create order invalid inputs try again");
 			}catch (NumberFormatException ex) {
+				LOGGER.info("NumberFormatException");
 			}
 			finally {
 				this.clear();
