@@ -24,7 +24,7 @@ public class MysqlItemDao implements Dao<Item> {
 	@Override
 	public void delete(Item t, Jdbc database) {
 		if (t.getId() >= 0) {
-			database.query("DELETE FROM items where id='" + t.getId() + "'");
+			database.query("DELETE FROM items where id = " + t.getId());
 		}
 	}
 

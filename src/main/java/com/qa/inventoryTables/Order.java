@@ -47,6 +47,7 @@ public class Order extends InventoryEntity{
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	@SuppressWarnings("resource")
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);

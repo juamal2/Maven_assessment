@@ -7,7 +7,8 @@ import org.apache.log4j.Logger;
 
 
 /**
- * 
+ * Class representing Customer table from database 
+ * Instance of Customer = 1 record from Customer table
  * @author JuamalBlackman
  *
  */
@@ -31,6 +32,7 @@ public class Customer extends InventoryEntity{
 		this.name = name;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void userValues() {
 		Scanner input = new Scanner(System.in);

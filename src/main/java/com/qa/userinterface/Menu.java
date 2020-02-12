@@ -18,23 +18,25 @@ import com.qa.inventorytables.Order;
 
 /**
  * main controller of console outputs start of the console application
+ * 
  * @author JuamalBlackman
  *
  */
 public class Menu {
 	public static final Logger LOGGER = Logger.getLogger(Menu.class);
-	Scanner input = new Scanner(System.in);
-	Jdbc database;
+	private Scanner input = new Scanner(System.in);
+	private boolean running = true;
+	private Jdbc database;
 	@SuppressWarnings("rawtypes")
-	Dao dao;
-	CreateQuery createquery = new CreateQuery();
-	InventoryEntity tableItem;
-	String menuLbl;
-	
+	private Dao dao;
+	private CreateQuery createquery = new CreateQuery();
+	private InventoryEntity tableItem;
+	private String menuLbl;
+
 	public Menu(Jdbc database) {
 		this.database = database;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public Dao getDao() {
 		return dao;
@@ -43,118 +45,107 @@ public class Menu {
 	public void setDao(@SuppressWarnings("rawtypes") Dao dao) {
 		this.dao = dao;
 	}
-	
+
 	/**
-	 * first part of Menu main loop for CMl inventory displays first main menu and takes user input
-	 * assigns instance variables depends of choice to later be passed on to dao along with Jdbc database connection
+	 * first part of Menu main loop for CMl inventory displays first main menu and
+	 * takes user input assigns instance variables depends of choice to later be
+	 * passed on to dao along with Jdbc database connection
+	 * 
 	 * @return true while user input is not exit program
 	 */
 	public boolean displayMain() {
-		LOGGER.info("____________________________________________\n"
-				+ "Customers\n"
-				+ "Items\n"
-				+ "Orders\n"
-				+ "Exit \n");
+		
+		LOGGER.info(
+				"____________________________________________\n" + "Customers\n" + "Items\n" + "Orders\n" + "Exit \n");
 		String choice = this.input.nextLine();
 		choice = choice.toUpperCase();
-		switch (choice){
-			case ("CUSTOMERS"):
-				this.dao = new MysqlCustomerDao();
-				this.tableItem = new Customer();
-				this.menuLbl = "Customer";
-				return true;
-			case ("ITEMS"):
-				this.dao = new MysqlItemDao();
-				this.tableItem = new Item();
-				this.menuLbl = "Items";
-				return true;
-			case ("ORDERS"):
-				this.dao = new MysqlOrderDao();
-				this.tableItem = new Order();
-				this.menuLbl = "Order";
-				return true;
-			default:
-				return false;
+		switch (choice) {
+		case ("CUSTOMERS"):
+			this.dao = new MysqlCustomerDao();
+			this.tableItem = new Customer();
+			this.menuLbl = "Customer";
+			break;
+		case ("ITEMS"):
+			this.dao = new MysqlItemDao();
+			this.tableItem = new Item();
+			this.menuLbl = "Items";
+			break;
+		case ("ORDERS"):
+			this.dao = new MysqlOrderDao();
+			this.tableItem = new Order();
+			this.menuLbl = "Orders";
+			break;
+		case ("EXIT"):
+			this.running = false;
+			return false;
+		default:
+			LOGGER.info("invalid input please enter one of the above");
 		}
-		
+		return true;
 	}
+
 	/**
 	 * second part of Menu main loop for CMl inventory displays second main menu
 	 * switch on user input and sends information out to relevant Dao
-	 * @return returns Integer value depends on user input 
+	 * 
+	 * @return returns Integer value depends on user input
 	 */
 	@SuppressWarnings("unchecked")
-	public int displayCrud() {
+	public boolean displayCrud() {
 		int id;
-		LOGGER.info("____________________________________________\n"
-				+ "		"+this.menuLbl+"\n"
-				+ "Create\n"
-				+ "Read\n"
-				+ "Update\n"
-				+ "Delete\n"
-				+ "Exit \n");
+		InventoryEntity methTableItem = this.tableItem;
+		LOGGER.info("____________________________________________\n" + "		" + this.menuLbl + "\n" + "Create\n"
+				+ "Read\n" + "Update\n" + "Delete\n" + "Exit \n");
 		String choice = this.input.nextLine();
 		choice = choice.toUpperCase();
-		switch (choice){
+		switch (choice) {
 		case ("CREATE"):
 			try {
-				Order orderCreate = (Order) tableItem;
-				this.tableItem.userValues();
+				Order orderCreate = (Order) methTableItem;
+				methTableItem.userValues();
 				orderCreate = this.createquery.createOrderItems(orderCreate.getCustomerId(), this.database);
 				this.dao.create(orderCreate, this.database);
-			}catch(ClassCastException failCast) {
-				this.tableItem.userValues();
-				this.dao.create(tableItem, this.database);
-			}catch(InputMismatchException e) {
+			} catch (ClassCastException failCast) {
+				methTableItem.userValues();
+				this.dao.create(methTableItem, this.database);
+			} catch (InputMismatchException e) {
 				LOGGER.info("stopping process invaild input");
 			}
-			return 1;
+			break;
 		case ("READ_ID"):
 			id = this.createquery.getId();
 			LOGGER.info(this.dao.read(this.database, id));
-			return 2;
+			break;
 		case ("READ ALL"):
 			LOGGER.info(this.dao.read(this.database));
-			return 3;
+			break;
 		case ("UPDATE"):
-			this.tableItem.setId(this.createquery.getId());
-			this.tableItem.userValues();
-			this.dao.update(tableItem, this.database);
-			return 4;
-		case ("Delete"):
-			return 5;
-		case ("Back"):
-			return 6;
+			methTableItem.setId(this.createquery.getId());
+			methTableItem.userValues();
+			this.dao.update(methTableItem, this.database);
+			break;
+		case ("DELETE"):
+			methTableItem.setId(createquery.getId());
+			this.dao.delete(methTableItem, this.database);
+			break;
+		case ("EXIT"):
+			methTableItem = null;
+			this.dao = null;
+			return false;
 		default:
-			return -1;
+			LOGGER.info("invalid input please enter one of the above");
+			break;
+		}
+	return true;
 	}
-		
+	
+	
+	public boolean isRunning() {
+		return running;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
 }
