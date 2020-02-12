@@ -84,9 +84,9 @@ public class Jdbc {
 				String keys = resultSetToString(stmt.getGeneratedKeys());
 				return Integer.parseInt(keys.replace("GENERATED_KEY = ", "").trim());
 			}catch (SQLException ex) {
-				LOGGER.info("Failed to create order invalid inputs try again");
+				LOGGER.info(ex.getMessage());
 			}catch (NumberFormatException ex) {
-				LOGGER.info("NumberFormatException");
+				LOGGER.info("No primary keys returned");
 			}
 			finally {
 				this.clear();

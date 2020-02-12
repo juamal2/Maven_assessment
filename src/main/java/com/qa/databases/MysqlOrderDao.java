@@ -20,6 +20,7 @@ public class MysqlOrderDao implements Dao<Order> {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void update(Order t, Jdbc database) {
 		this.read(database, t.getId());
@@ -29,9 +30,9 @@ public class MysqlOrderDao implements Dao<Order> {
 		LOGGER.info("what is the new item amount");
 		int amount = input.nextInt();
 		database.query("UPDATE order_line SET item_amount = " + amount + " WHERE order_id =" + t.getId() + " AND item_id = " + itemId);
-		input.close();
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void delete(Order t, Jdbc database) {
 		this.read(database, t.getId());
@@ -39,7 +40,7 @@ public class MysqlOrderDao implements Dao<Order> {
 		LOGGER.info("Enter the id of the item you want to delete");
 		int itemId = input.nextInt();
 		database.query("DELETE FROM order_line where order_id = "+ t.getId() + " and item_id =" + itemId);
-		input.close();
+
 	}
 
 	@Override
@@ -49,8 +50,7 @@ public class MysqlOrderDao implements Dao<Order> {
 			String items;
 			order = database.selectQuery("SELECT * FROM orders WHERE id = '" + id + "'");
 			items = database.selectQuery("SELECT item_id, items.name,item_amount, items.value FROM order_line JOIN items ON order_line.id=items.id WHERE order_id ='"+ id + "'");
-			items = order += items;
-			return order;
+			return order += items;
 		}
 		else {return "Failed";}
 	}
