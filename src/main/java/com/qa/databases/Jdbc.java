@@ -42,7 +42,7 @@ public class Jdbc {
 	}
 
 	/**
-	 * 
+	 * Used for selectQuerys returns results to a string ready for console output
 	 * @param query SQL Statement to be performed on database Eg: SELECT * FROM TABLE;
 	 * @return String("failed") if query fails or result of query : String( id = 1 name = "name")
 	 */
@@ -63,6 +63,11 @@ public class Jdbc {
 		return result;
 	}
 	
+	/**
+	 * Performs non select query, if primary keys are generated they will be returned
+	 * @param query SQL Statement to be performed on database Eg: DELETE FROM table WHERE x = y;
+	 * @return value of primary key if key is not generated returns -1
+	 */
 	public int query(String query) {
 		int result =-1;
 		if (Boolean.TRUE.equals(isValid())) {
@@ -82,7 +87,11 @@ public class Jdbc {
 		return result;
 	}
 	
-	
+	/**
+	 * 
+	 * @param rs
+	 * @return
+	 */
 	public String resultSetToString(ResultSet rs){
 		String result = "";
 		try {
