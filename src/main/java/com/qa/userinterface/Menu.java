@@ -16,7 +16,11 @@ import com.qa.inventoryTables.InventoryEntity;
 import com.qa.inventoryTables.Item;
 import com.qa.inventoryTables.Order;
 
-
+/**
+ * main controller of console outputs start of the console application
+ * @author JuamalBlackman
+ *
+ */
 public class Menu {
 	public static final Logger LOGGER = Logger.getLogger(Menu.class);
 	Scanner input = new Scanner(System.in);
@@ -39,7 +43,12 @@ public class Menu {
 	public void setDao(@SuppressWarnings("rawtypes") Dao dao) {
 		this.dao = dao;
 	}
-
+	
+	/**
+	 * first part of Menu main loop for CMl inventory displays first main menu and takes user input
+	 * assigns instance variables depends of choice to later be passed on to dao along with Jdbc database connection
+	 * @return true while user input is not exit program
+	 */
 	public boolean displayMain() {
 		LOGGER.info("____________________________________________\n"
 				+ "Customers\n"
@@ -69,6 +78,11 @@ public class Menu {
 		}
 		
 	}
+	/**
+	 * second part of Menu main loop for CMl inventory displays second main menu
+	 * switch on user input and sends information out to relevant Dao
+	 * @return returns Integer value depends on user input 
+	 */
 	@SuppressWarnings("unchecked")
 	public int displayCrud() {
 		int id;

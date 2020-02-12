@@ -12,11 +12,18 @@ import org.apache.log4j.Logger;
 
 
 
-
+/**
+ * Class used to provide easier access to functionality of Java JDBC
+ * Allows user to make persistent connection to database and quickly execute query's
+ * for console output
+ * @author JuamalBlackman
+ *
+ */
 public class Jdbc {
 	
 	public static final Logger LOGGER = Logger.getLogger(Jdbc.class);
 
+	
 	private Connection connection;
 	private Statement stmt = null;
 	private ResultSet resultSet = null;
@@ -88,18 +95,18 @@ public class Jdbc {
 	}
 	
 	/**
-	 * 
-	 * @param rs
-	 * @return
+	 * Converts resultSet from database query's to console output ready string
+	 * @param resultset resultSet returned from Jdbc query must be valid
+	 * @return Returns formated string of result sets content Eg:String( id = 1 name = "name")
 	 */
-	public String resultSetToString(ResultSet rs){
+	public String resultSetToString(ResultSet resultset){
 		String result = "";
 		try {
-			ResultSetMetaData meta = rs.getMetaData();
-			while(rs.next()) {
+			ResultSetMetaData meta = resultset.getMetaData();
+			while(resultset.next()) {
 				String row = "";
 				for (int i = 1; i <=  meta.getColumnCount(); i++) {
-					row +=  meta.getColumnLabel(i) + " = " + rs.getString(i) + "	 ";
+					row +=  meta.getColumnLabel(i) + " = " + resultset.getString(i) + "	 ";
 				}
 				result += "\n" + row ;
 			}
@@ -111,7 +118,9 @@ public class Jdbc {
 		return result;
 	}
 	
-	
+	/**
+	 * used to clear Jdbc result should be called after all query's usually called in Finally clause
+	 */
 	public void clear() {
 		if (this.resultSet != null) {
 			try {this.resultSet.close();
@@ -128,7 +137,7 @@ public class Jdbc {
 
 	/**
 	 * Returns true if connection to database is still valid and exists
-	 * @return 
+	 * @return check if Jdbc database connection is still valid must be called before all query's
 	 */
 	public Boolean isValid() {
 		try {
