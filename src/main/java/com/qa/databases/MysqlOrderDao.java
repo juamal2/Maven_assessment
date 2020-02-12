@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.qa.inventoryTables.Item;
-import com.qa.inventoryTables.Order;
+import com.qa.inventorytables.Item;
+import com.qa.inventorytables.Order;
 
 
 public class MysqlOrderDao implements Dao<Order> {
@@ -46,8 +46,11 @@ public class MysqlOrderDao implements Dao<Order> {
 	public String read(Jdbc database, int id) {
 		if (id >= 0) {
 			String order;
+			String items;
 			order = database.selectQuery("SELECT * FROM orders WHERE id = '" + id + "'");
-			return order += database.selectQuery("SELECT item_id, items.name,item_amount, items.value FROM order_line JOIN items ON order_line.id=items.id WHERE order_id ='"+ id + "'");
+			items = database.selectQuery("SELECT item_id, items.name,item_amount, items.value FROM order_line JOIN items ON order_line.id=items.id WHERE order_id ='"+ id + "'");
+			items = order += items;
+			return order;
 		}
 		else {return "Failed";}
 	}

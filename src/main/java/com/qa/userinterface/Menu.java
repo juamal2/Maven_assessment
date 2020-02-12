@@ -11,10 +11,10 @@ import com.qa.databases.MysqlCustomerDao;
 import com.qa.databases.MysqlItemDao;
 import com.qa.databases.MysqlOrderDao;
 import com.qa.interact.CreateQuery;
-import com.qa.inventoryTables.Customer;
-import com.qa.inventoryTables.InventoryEntity;
-import com.qa.inventoryTables.Item;
-import com.qa.inventoryTables.Order;
+import com.qa.inventorytables.Customer;
+import com.qa.inventorytables.InventoryEntity;
+import com.qa.inventorytables.Item;
+import com.qa.inventorytables.Order;
 
 /**
  * main controller of console outputs start of the console application

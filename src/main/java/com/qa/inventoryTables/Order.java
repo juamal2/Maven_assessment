@@ -1,4 +1,4 @@
-package com.qa.inventoryTables;
+package com.qa.inventorytables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Order extends InventoryEntity{
 	public Order(int id) {
 		super(id);
 	}
-	public Order(int customerId, ArrayList<Item> items, double totalCost) {
+	public Order(int customerId, List<Item> items, double totalCost) {
 		super(-1);
 		this.setCustomerId(customerId);
 		this.setItems(items);

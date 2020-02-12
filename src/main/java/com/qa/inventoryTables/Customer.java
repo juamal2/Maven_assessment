@@ -1,4 +1,4 @@
-package com.qa.inventoryTables;
+package com.qa.inventorytables;
 
 import java.util.Scanner;
 
@@ -6,7 +6,11 @@ import org.apache.log4j.Logger;
 
 
 
-
+/**
+ * 
+ * @author JuamalBlackman
+ *
+ */
 public class Customer extends InventoryEntity{
 	public static final Logger LOGGER = Logger.getLogger(Customer.class);
 	
@@ -31,8 +35,7 @@ public class Customer extends InventoryEntity{
 	public void userValues() {
 		Scanner input = new Scanner(System.in);
 		LOGGER.info("Enter customer name");
-		String name =input.nextLine();
-		this.name = name;
+		this.name = input.nextLine();
 
 	
 	}

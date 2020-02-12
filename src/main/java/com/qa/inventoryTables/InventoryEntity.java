@@ -1,4 +1,4 @@
-package com.qa.inventoryTables;
+package com.qa.inventorytables;
 
 
 /**
