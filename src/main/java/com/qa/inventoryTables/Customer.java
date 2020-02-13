@@ -1,5 +1,6 @@
 package com.qa.inventorytables;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -38,6 +39,7 @@ public class Customer extends InventoryEntity{
 		Scanner input = new Scanner(System.in);
 		LOGGER.info("Enter customer name");
 		this.name = input.nextLine();
+
 
 	
 	}
