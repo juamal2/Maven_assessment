@@ -25,6 +25,22 @@ public class Jdbc {
 
 	
 	private Connection connection;
+	
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public Statement getStmt() {
+		return stmt;
+	}
+
+
+	public ResultSet getResultSet() {
+		return resultSet;
+	}
+
+
+
 	private Statement stmt = null;
 	private ResultSet resultSet = null;
 
