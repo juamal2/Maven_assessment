@@ -39,9 +39,6 @@ public class MysqlCustomerDao implements Dao<Customer> {
 		if (t.getId() >= 0) {
 			database.query("DELETE FROM customers where id='" + t.getId() + "'");
 		}
-		else if(!t.getName().equals("")) {
-			database.query("DELETE FROM customers where name='" + t.getName() + "'");
-		}
 	}
 	
 

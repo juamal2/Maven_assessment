@@ -2,6 +2,7 @@ package com.qa.inventorytablestest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -19,8 +20,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 
 
-
 public class CustomerTest {
+	
+	@Spy
+	@InjectMocks
+	private Customer customer;
+
 	
 	private Customer customerNameTest;
 	private Customer customerIdTest;
@@ -42,6 +47,7 @@ public class CustomerTest {
 		assertEquals(1, customerIdTest.getId());
 		assertEquals(-1, customerNullId.getId());
 	}
+
 	
 	
 	
