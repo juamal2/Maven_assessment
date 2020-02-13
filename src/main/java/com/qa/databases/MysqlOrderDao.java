@@ -49,8 +49,9 @@ public class MysqlOrderDao implements Dao<Order> {
 			String order;
 			String items;
 			order = database.selectQuery("SELECT * FROM orders WHERE id = '" + id + "'");
-			items = database.selectQuery("SELECT item_id, items.name,item_amount, items.value FROM order_line JOIN items ON order_line.id=items.id WHERE order_id ='"+ id + "'");
-			return order += items;
+			items = database.selectQuery("SELECT item_id, items.name,item_amount, items.value FROM order_line JOIN items ON order_line.item_id=items.id WHERE order_id ='"+ id + "'");
+			order = order += items;
+			return order;
 		}
 		else {return "Failed";}
 	}
@@ -58,6 +59,11 @@ public class MysqlOrderDao implements Dao<Order> {
 	@Override
 	public String read(Jdbc database) {
 		return database.selectQuery("SELECT * FROM orders");	
+	}
+	
+	public void updateCosts(Jdbc database){
+		LOGGER.info(database.selectQuery("select id from orders order by id"));
+		
 	}
 
 
