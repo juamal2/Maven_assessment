@@ -37,8 +37,15 @@ public class MysqlCustomerDaoTest {
 	}
 	
 	@Test
-	public void createDeleteTest() {
+	public void createTest() {
 		Customer customer = new Customer("john");
+		customerDao.create(customer, database);
+		Mockito.verify(database, Mockito.times(1)).query("INSERT INTO customers(name) VALUES('" + customer.getName() + "')");
+	}
+	
+	@Test
+	public void deleteTest() {
+		Customer customer = new Customer(1);
 		customerDao.create(customer, database);
 		Mockito.verify(database, Mockito.times(1)).query("INSERT INTO customers(name) VALUES('" + customer.getName() + "')");
 	}
