@@ -93,6 +93,7 @@ public class Menu {
 	@SuppressWarnings("unchecked")
 	public boolean displayCrud() {
 		int id;
+		MysqlOrderDao.updateCosts(database);
 		InventoryEntity methTableItem = this.tableItem;
 		LOGGER.info("____________________________________________\n" + "		" + this.menuLbl + "\n" + "Create\n"
 				+ "Read\n" + "Update\n" + "Delete\n" + "Exit \n");

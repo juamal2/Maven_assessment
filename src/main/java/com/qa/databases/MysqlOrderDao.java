@@ -19,7 +19,6 @@ public class MysqlOrderDao implements Dao<Order> {
 			database.query("INSERT INTO order_line(order_id, item_id, item_amount) values(" + key + "," + item.getId() + "," + item.getQuanity() + ")");
 		}
 	}
-
 	@SuppressWarnings("resource")
 	@Override
 	public void update(Order t, Jdbc database) {
@@ -61,8 +60,17 @@ public class MysqlOrderDao implements Dao<Order> {
 		return database.selectQuery("SELECT * FROM orders");	
 	}
 	
-	public void updateCosts(Jdbc database){
-		LOGGER.info(database.selectQuery("select id from orders order by id"));
+	public static void  updateCosts(Jdbc database){
+		String orders = database.selectQuery("SELECT id FROM orders");
+		orders = orders.replace("id = ", "").trim().replace("\n","").replace("	 ","");
+		char idCharArr[] = orders.toCharArray();
+		for (char id : idCharArr) {
+			int finalId = Character.getNumericValue(id);
+			database.query("update orders set cost = (select sum(test.num1*test.num2) as totalcost from "+
+					"(SELECT item_amount as num1, value as num2 FROM " +
+							 "order_line JOIN items ON order_line.item_id=items.id WHERE " +
+							 "order_line.order_id ="+ finalId + ") as test) where id =" + finalId);
+		}
 		
 	}
 

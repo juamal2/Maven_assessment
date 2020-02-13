@@ -21,10 +21,7 @@ public class Runner {
 		if (database.init("jdbc:mysql://35.187.121.181:3306/inventory", "root", "Superspider23")) {
 			
 			
-			MysqlOrderDao orderdao = new MysqlOrderDao();
-			
-	
-			
+			MysqlOrderDao.updateCosts(database);
 			
 			Menu menu = new Menu(database);
 			while (menu.isRunning()) {
