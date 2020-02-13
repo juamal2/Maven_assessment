@@ -35,6 +35,7 @@ public abstract class InventoryEntity {
 	
 	/**
 	 * abstract method used to set all unique attributes  
+	 * @return 
 	 */
 	public abstract void userValues();
 	
