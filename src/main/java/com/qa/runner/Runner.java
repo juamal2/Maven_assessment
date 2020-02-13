@@ -23,18 +23,17 @@ public class Runner {
 			
 			MysqlOrderDao orderdao = new MysqlOrderDao();
 			
-			orderdao.updateCosts(database);
+	
 			
 			
-			
-//			Menu menu = new Menu(database);
-//			while (menu.isRunning()) {
-//				if (!menu.displayMain()){
-//				}else {
-//					while(menu.displayCrud()) {
-//					}
-//				}
-//			}
+			Menu menu = new Menu(database);
+			while (menu.isRunning()) {
+				if (!menu.displayMain()){
+				}else {
+					while(menu.displayCrud()) {
+					}
+				}
+			}
 			
 			
 			
