@@ -38,7 +38,6 @@ public class OrderTest {
 		this.orderNullId = new Order();
 		this.orderId = new Order(1);
 	}
-	
 	@Test
 	public void IdTest() {
 		assertNotNull(orderItems.getId());
