@@ -25,20 +25,17 @@ public class CustomerTest {
 	private Customer customerNameTest;
 	private Customer customerIdTest;
 	private Customer customerNullId;
-	
 	@Before
 	public void init(){
 		this.customerNameTest = new Customer("Juamal");
 		this.customerIdTest = new Customer(1);
 		this.customerNullId = new Customer();
 	}
-	
 	@Test
 	public void setNameTest() {
 		customerIdTest.setName("Juamal");
 		assertEquals("Juamal", customerIdTest.getName());
 	}
-	
 	@Test
 	public void IdTest() {
 		customerNameTest.setId(1);
