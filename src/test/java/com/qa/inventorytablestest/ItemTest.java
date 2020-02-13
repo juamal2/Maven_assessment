@@ -37,14 +37,12 @@ public class ItemTest {
 		ItemIdTest.setName("Juamal");
 		assertEquals("Juamal", ItemIdTest.getName());
 	}
-	
 	@Test
 	public void IdTest() {
 		ItemNameTest.setId(1);
 		assertEquals(1, ItemIdTest.getId());
 		assertEquals(-1, ItemNullId.getId());
 	}
-	
 	@Test
 	public void ValueTest() {
 		ItemIdTest.setValue(0.50);
