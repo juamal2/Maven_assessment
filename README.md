@@ -1,4 +1,4 @@
-# Project Title
+Maven IMS
 
 This is a Inventory Management system(IMS) where the user accesses a Google cloud hosted SQL database and can manipulate customers, items and orders using CRUD functionality in a java console application.
 The IMS has been built using a Java Maven project and tested using junit, Mockito and jacoco. Continious Integration has been implemented using jenkins hosted on an ubuntu vm, tests are automated and the 
