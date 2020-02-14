@@ -149,7 +149,7 @@ public class Jdbc {
 			this.stmt = null;
 		}
 	}
-	
+ 
 
 	/**
 	 * Returns true if connection to database is still valid and exists

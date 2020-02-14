@@ -15,7 +15,7 @@ public class MysqlItemDao implements Dao<Item> {
 
 	@Override
 	public void update(Item t, Jdbc database) {
-		if (t.getId() >= 0 && !t.getName().equals("") && t.getValue() != 0.0) {
+		if (t.getId() >= 0 && !t.getName().equals("") && t.getValue() > 0.0) {
 			database.query("Update items set name='" + t.getName() + "', value='" + t.getValue() + "' where id='"
 					+ t.getId() + "'");
 		}
