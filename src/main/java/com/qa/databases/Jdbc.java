@@ -101,7 +101,7 @@ public class Jdbc {
 			}catch (SQLException ex) {
 				LOGGER.info(ex.getMessage());
 			}catch (NumberFormatException ex) {
-				LOGGER.info("No primary keys returned");
+				LOGGER.info("");
 			}
 			finally {
 				this.clear();
